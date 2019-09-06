@@ -93,7 +93,7 @@ LL solve(){
 int main(){
 
     scanf("%lld%lld", &p, &n);
-    k = (LL)pow(n, 2.0 / 3);
+    k = min(1LL * N - 5, n);
     inv2 = fpow(2, p - 2, p);
     inv4 = fpow(4, p - 2, p);
     inv6 = fpow(6, p - 2, p);
