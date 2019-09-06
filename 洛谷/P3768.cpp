@@ -26,18 +26,18 @@ inline A fpow(A x, B p, C lyd){
     return ans;
 }
 const int N = 5000005;
-LL n, p, phi[N], inv4, inv6, inv2;
+LL n, p, phi[N], inv4, inv6, inv2, k;
 int tot, prime[N];
 bool vis[N];
 unordered_map<LL, LL> m;
 
 void sieve(){
     phi[1] = 1;
-    for(int i = 2; i < N; i ++){
+    for(int i = 2; i <= k; i ++){
         if(!vis[i]){
             prime[++tot] = i, phi[i] = (i - 1) % p;
         }
-        for(int j = 1; j <= tot && i * prime[j] < N; j ++){
+        for(int j = 1; j <= tot && i * prime[j] <= k; j ++){
             vis[i * prime[j]] = true;
             if(i % prime[j] == 0){
                 phi[i * prime[j]] = phi[i] * prime[j] % p;
@@ -46,7 +46,7 @@ void sieve(){
             else phi[i * prime[j]] = phi[i] * (prime[j] - 1) % p;
         }
     }
-    for(int i = 1; i < N; i ++){
+    for(int i = 1; i <= k; i ++){
         phi[i] = (phi[i - 1] + phi[i] * i % p * i % p) % p;
     }
 }
@@ -67,7 +67,7 @@ LL h(LL n){
 }
 
 LL calc(LL n){
-    if(n < N) return phi[n];
+    if(n <= k) return phi[n];
     if(m[n]) return m[n];
     LL ans = fg(n);
     for(LL l = 2, r; l <= n; l = r + 1){
@@ -93,6 +93,7 @@ LL solve(){
 int main(){
 
     scanf("%lld%lld", &p, &n);
+    k = (LL)pow(n, 2.0 / 3);
     inv2 = fpow(2, p - 2, p);
     inv4 = fpow(4, p - 2, p);
     inv6 = fpow(6, p - 2, p);
