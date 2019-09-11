@@ -93,7 +93,7 @@ int main(){
     }
     fft(c, len, -1);
     for(int i = 0; i <= n + m; i ++){
-        printf("%d%c", (int)(lround(c[i].x / len)), " \n"[i == len - 1]);
+        printf("%d%c", (int)round(c[i].x / len), " \n"[i == len - 1]);
     }
     return 0;
 }
