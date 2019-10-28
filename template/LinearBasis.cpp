@@ -66,6 +66,14 @@ namespace XorBasis{
         }
         return ret;
     }
+    
+    LL sum(){
+        LL ret = 0;
+        for(int i = t; i >= 1; i --){
+            ret ^= a[i];
+        }
+        return ret;
+    }
 }
 
 using XorBasis::build;
