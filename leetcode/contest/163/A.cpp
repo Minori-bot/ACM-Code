@@ -10,7 +10,6 @@ public:
             for(int j = 0; j < m; j ++){
                 int y = (j + k) % m;
                 int x = ((j + k) / m + i) % n;
-                cout << x << " " << y << endl;
                 change[make_pair(x, y)] = grid[i][j];
             }
         }
