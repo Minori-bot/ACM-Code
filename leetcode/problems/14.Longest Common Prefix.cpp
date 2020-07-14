@@ -64,3 +64,19 @@ public:
         return strs.front().substr(0, min(minLen, trie.solve(strs)));
     }
 };
+
+
+//    O(S) Solution 
+//    string longestCommonPrefix(vector<string>& strs) {
+//
+//        string prefix = strs.front();
+//
+//        for(int i = 1; i < strs.size(); i ++){
+//            while(strs[i].find(prefix) != 0){
+//                prefix = prefix.substr(0, prefix.size() - 1);
+//                if(prefix.empty()) return "";
+//            }
+//        }
+//
+//        return prefix;
+//    }
