@@ -1,6 +1,7 @@
 class Solution {
 public:
     // remove element in place
+    // naive solution
     int removeElement(vector<int>& nums, int val) {
         
         if(nums.empty()) return 0;
@@ -23,4 +24,19 @@ public:
         }
         return ok ? r : r + 1;
     }
+
+
+    int removeElement2(vector<int>& nums, int val) {
+        
+        if(nums.empty()) return 0;
+        
+        int i = 0;
+        for(int j = 0; j < nums.size(); j ++){
+            if(nums[j] != val){
+                nums[i++] = nums[j];
+            }
+        }
+        return i;
+    }
+
 };
