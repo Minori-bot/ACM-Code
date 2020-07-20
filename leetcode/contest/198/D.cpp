@@ -1,3 +1,5 @@
+class Solution {
+
 public:
 
     // O(nlogn) Solution
