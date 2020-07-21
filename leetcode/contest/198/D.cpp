@@ -2,7 +2,7 @@ class Solution {
 
 public:
 
-    // O(nlogn) Solution
+    // O(n) Solution, improved from O(nlogn)
     int closestToTarget(vector<int>& arr, int target) {
 
         vector<vector<int>> pos(30);
@@ -13,8 +13,10 @@ public:
         }
 
         int n = (int)arr.size();
-        vector<int> dp(n);
+        vector<int> dp(n + 1);
+        dp[n] = INT_MAX;
         int ans = INT_MAX;
+        int l = n - 1;
         for(int i = n - 1; i >= 0; i --){
             for(int j = 0; j < 30; j ++){
                 if(!((arr[i] >> j) & 1)){
@@ -26,16 +28,19 @@ public:
             }
             dp[i] = arr[i];
 
-            auto it = lower_bound(dp.begin() + i, dp.end(), target, greater<int>());
-            if(it == dp.begin() + i){
-                ans = min(ans, abs(*it - target));
-            }
-            else if(it == dp.end()){
-                ans = min(ans, abs(*(it - 1) - target));
-            }
-            else{
-                ans = min(ans, min(abs(*it - target), abs(*(it - 1) - target)));
-            }
+//            auto it = lower_bound(dp.begin() + i, dp.end(), target, greater<int>());
+//            if(it == dp.begin() + i){
+//                ans = min(ans, abs(*it - target));
+//            }
+//            else if(it == dp.end()){
+//                ans = min(ans, abs(*(it - 1) - target));
+//            }
+//            else{
+//                ans = min(ans, min(abs(*it - target), abs(*(it - 1) - target)));
+//            }
+//          The index l we found by binary search won't increase after each round of new sequence generation. 
+            while(l > i && dp[l] < target) l --;
+            ans = min(ans, min(abs(dp[l] - target), abs(dp[l + 1] - target)));
         }
         return ans;
     }
