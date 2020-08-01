@@ -3,7 +3,7 @@ class Solution {
 private:
 
     // binary search the target in [l...r)
-    int binarySearch(vector<int> nums, int l, int r, int t){
+    int binarySearch(const vector<int>& nums, int l, int r, int t){
 
         if(l >= r) return -1;
 
