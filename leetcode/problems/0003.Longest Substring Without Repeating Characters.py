@@ -13,3 +13,29 @@ class Solution:
                 left = index + 1
                 char_dic[s[i]] = i
         return ret
+
+
+// cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+
+        int l = 0, r = -1, n = s.size();
+        int res = 0;
+        unordered_map<char, bool> vis;
+
+        while(r + 1 < n){
+            if(vis[s[r + 1] - 'a']){
+                while(l < n && s[l] != s[r + 1]){
+                    vis[s[l++] - 'a'] = false;
+                }
+                vis[s[l++] - 'a'] = false;
+            }
+            r ++;
+            vis[s[r] - 'a'] = true;
+            res = max(res, r - l + 1);
+        }
+    
+        return res;
+    }
+};
