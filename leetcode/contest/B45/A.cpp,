@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        
+        unordered_map<int, int> map;
+        
+        for(auto e: nums) map[e] ++;
+        int sum = 0;
+        for(auto e: nums){
+            if(map[e] == 1) sum += e;
+        }
+        
+        return sum;
+    }
+};
